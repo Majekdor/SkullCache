@@ -1,0 +1,9 @@
+name: SkullCache
+version: 1.0.0
+main: dev.majek.skullcache.SkullCacheTestPlugin
+api-version: 1.16
+authors: [ Majekdor ]
+description: Test plugin for SkullCache API.
+commands:
+  testskullcache:
+    description: Test speed of skull cache.

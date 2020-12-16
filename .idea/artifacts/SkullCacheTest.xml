@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SkullCacheTest">
+    <output-path>$PROJECT_DIR$/out/artifacts/SkullCacheTest</output-path>
+    <root id="archive" name="SkullCacheTest.jar">
+      <element id="module-output" name="SkullCache" />
+    </root>
+  </artifact>
+</component>
