@@ -201,10 +201,10 @@ public class SkullCache {
     private static final JSONParser jsonParser = new JSONParser();
 
     /**
-     * Modifies a skull to use the skin of the player with a given UUID.
+     * Modifies a skull to use the skin of the player with a given uuid.
      *
      * @param item  The item to apply the name to. Must be a player skull.
-     * @param id    The player's UUID.
+     * @param id    The player's uuid.
      * @return      The head of the player.
      */
     @SuppressWarnings("deprecation")
@@ -226,8 +226,7 @@ public class SkullCache {
     }
 
     private static void notNull(Object o, String name) {
-        if (o == null) {
+        if (o == null)
             throw new NullPointerException(name + " should not be null!");
-        }
     }
 }

@@ -21,12 +21,15 @@ public class SkullCacheTestPlugin extends JavaPlugin implements CommandExecutor 
         instance = this;
     }
 
+    /**
+     * Test subjects >:D
+     */
     public UUID[] uuids = new UUID[]{
+            UUID.fromString("ca2d5464-e09a-45c2-9ac9-54cba9b34801"), // Majekdor
             UUID.fromString("fe365af3-9d84-44e5-befa-63dd244a2697"), // Penroll
             UUID.fromString("dc1ad102-b4f9-4190-b662-2bc4abc56339"), // RanchDude
             UUID.fromString("c3fd6ba1-c79f-43b0-8be2-29b9bd6c5a08"), // Obdurator
             UUID.fromString("efe2a359-3752-4431-a707-e6e66fcd961d"), // funnyboy_roks
-            UUID.fromString("ca2d5464-e09a-45c2-9ac9-54cba9b34801"), // Majekdor
             UUID.fromString("c96b1aaf-7588-4178-9dd8-b47fab8eea31"), // rchristensen1
             UUID.fromString("e27453c2-6130-44c8-899a-cdf7cc27f346"), // Lythoniel
             UUID.fromString("8d8acbaa-e717-4ecd-8537-c6f924e6de83"), // Kiaria
