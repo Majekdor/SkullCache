@@ -52,22 +52,25 @@ public class SkullCache {
 
     /**
      * Cache an array of skulls from uuids.
+     * Task will run asynchronously in an attempt to prevent server lag.
      * @param uuids Array of uuids.
      */
     public static void cacheSkulls(UUID[] uuids) {
-        long start = System.currentTimeMillis();
-        for (UUID uuid : uuids) {
-            skullMap.put(uuid, skullFromUuid(uuid));
-            timeMap.put(uuid, System.currentTimeMillis());
-        }
-        // Generate an inventory off the rip to try to fix the hashmap
-        Inventory inventory  = Bukkit.createInventory(null, 54, "Skull Cache Test");
-        for (int i = 0; i < Math.min(54, uuids.length); i++) {
-            inventory.setItem(i, SkullCache.getSkull(uuids[i]));
-        }
-        inventory.clear();
-        Bukkit.getLogger().log(Level.INFO, ChatColor.GREEN + "[SkullCache] Cached " + uuids.length
-                + " skulls in " + (System.currentTimeMillis() - start) + "ms.");
+        new Thread(() -> {
+            long start = System.currentTimeMillis();
+            for (UUID uuid : uuids) {
+                skullMap.put(uuid, skullFromUuid(uuid));
+                timeMap.put(uuid, System.currentTimeMillis());
+            }
+            // Generate an inventory off the rip to try to fix the hashmap
+            Inventory inventory  = Bukkit.createInventory(null, 54, "Skull Cache Test");
+            for (int i = 0; i < Math.min(54, uuids.length); i++) {
+                inventory.setItem(i, SkullCache.getSkull(uuids[i]));
+            }
+            inventory.clear();
+            Bukkit.getLogger().log(Level.INFO, ChatColor.GREEN + "[SkullCache] Cached " + uuids.length
+                    + " skulls in " + (System.currentTimeMillis() - start) + "ms.");
+        }).start();
     }
 
     /**
