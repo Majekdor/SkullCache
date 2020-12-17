@@ -211,16 +211,20 @@ public class SkullCache {
     public static ItemStack itemWithUuid(ItemStack item, UUID id) throws Exception {
         notNull(item, "item");
         notNull(id, "id");
-        HttpURLConnection connection = (HttpURLConnection) new URL(PROFILE_URL + id.toString()
-                .replace("-", "")).openConnection();
-        JSONObject response = (JSONObject) jsonParser.parse(new InputStreamReader(connection.getInputStream()));
-        String name = (String) response.get("name");
-        String cause = (String) response.get("cause");
-        String errorMessage = (String) response.get("errorMessage");
-        if (cause != null && cause.length() > 0)
-            throw new IllegalStateException(errorMessage);
         SkullMeta meta = (SkullMeta) item.getItemMeta();
-        meta.setOwner(name);
+        if (Bukkit.getOfflinePlayer(id).hasPlayedBefore())
+            meta.setOwningPlayer(Bukkit.getOfflinePlayer(id));
+        else {
+            HttpURLConnection connection = (HttpURLConnection) new URL(PROFILE_URL + id.toString()
+                    .replace("-", "")).openConnection();
+            JSONObject response = (JSONObject) jsonParser.parse(new InputStreamReader(connection.getInputStream()));
+            String name = (String) response.get("name");
+            String cause = (String) response.get("cause");
+            String errorMessage = (String) response.get("errorMessage");
+            if (cause != null && cause.length() > 0)
+                throw new IllegalStateException(errorMessage);
+            meta.setOwner(name);
+        }
         item.setItemMeta(meta);
         return item;
     }

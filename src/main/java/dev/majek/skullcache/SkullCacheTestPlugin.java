@@ -63,7 +63,7 @@ public class SkullCacheTestPlugin extends JavaPlugin implements CommandExecutor 
         Bukkit.getLogger().log(Level.SEVERE, "SKULLCACHE IS NOT INTENDED TO BE RUN AS A PLUGIN EXCEPT FOR" +
                 "DEVELOPMENT REASONS. THIS PLUGIN WILL DO NOTHING.");
         this.getCommand("testskullcache").setExecutor(this);
-        Bukkit.getScheduler().runTaskLater(this,  () -> SkullCache.cacheSkulls(uuids), 100L);
+        Bukkit.getScheduler().runTaskLater(this,  () -> SkullCache.cacheSkulls(uuids), 60L);
     }
     @Override
     public void onDisable() {
