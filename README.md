@@ -9,7 +9,13 @@ those heads that aren't stored in memory it creates a large lag spike for online
 display the heads and eliminate lag.
 
 ## Usage
-Using the SkullCache library is incredibly easy. Skulls can be cached and accessed from a given UUID, Player, or OfflinePlayer.
+Using the SkullCache library is incredibly easy. Skulls can be cached and accessed from a given UUID, Player, or OfflinePlayer. If you need this to use this API, then
+you probably need to access a lot of player skulls at the same time. Ideally, all skulls you're going to need should be cached on server startup, and you should never
+cache more than one skull at runtime (in a command executor, for example). Adding a lot of skulls to the cache at runtime will result in a significant slowdown, or break
+the command entirely. The ```cacheSkulls()``` method runs asynchronously, and if you try to get a lot of skulls that are not in cache with ```getSkulls()``` there will be 
+a significant lag spike. However, if you only need to fetch one skull at runtime, it will execute with minimal lag and be cached for future use. I recommend caching all the 
+skulls you think you'll need when the server starts, and if that list changes (someone adding a shop in a chest shops plugin, for example) then add skulls to cache/remove 
+skulls from cache one at a time.
 
 ### Caching Skulls
 Skulls can be cached one at a time or passed in using an array. If you wanted to cache 3 player's skulls using their UUIDs, you would do something like this:
