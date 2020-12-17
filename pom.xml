@@ -70,25 +70,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- Javadoc Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <links>
-                        <link>https://hub.spigotmc.org/javadocs/spigot/</link>
-                    </links>
-                    <sourceFileIncludes>
-                        <include>SkullCreator.java</include>
-                    </sourceFileIncludes>
-                    <sourcepath>${basedir}/src/main/java/dev/dbassett/skullcreator</sourcepath>
-                    <reportOutputDirectory>${project.basedir}</reportOutputDirectory>
-                    <destDir>docs</destDir>
-                    <release>8</release>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
